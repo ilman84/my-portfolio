@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio - Next.js Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+## 🚀 Features
+
+- **Responsive Design** - Optimized for mobile, tablet, and desktop
+- **Modern UI/UX** - Clean and professional design with smooth animations
+- **Sticky Navigation** - Navigation that follows scroll with smart background
+- **Smooth Scrolling** - Seamless navigation between sections
+- **Framer Motion** - Beautiful animations and transitions
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Heroicons
+- **UI Components**: Radix UI
+
+## 📱 Sections
+
+- **Hero Section** - Introduction and main content
+- **Proven Section** - Experience and achievements
+- **Experienced Section** - Skills and expertise
+- **Design Motion** - Creative design showcase
+- **Choose Section** - Why choose me
+- **Years Section** - Years of experience
+- **Frontend Section** - Portfolio projects
+- **Trusted Section** - Client testimonials
+- **FAQ Section** - Frequently asked questions
+- **Conversation Section** - Contact information
+- **Footer** - Additional links and info
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/my-portfolio.git
+cd my-portfolio
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Next.js app directory
+│   ├── globals.css     # Global styles
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Home page
+├── components/          # React components
+│   ├── hero.tsx        # Hero section
+│   ├── navbar.tsx      # Navigation bar
+│   ├── proven.tsx      # Proven section
+│   └── ...             # Other components
+├── types/               # TypeScript type definitions
+│   └── navigation.ts   # Navigation types
+└── hooks/               # Custom React hooks
+```
 
-## Learn More
+## 🎨 Customization
 
-To learn more about Next.js, take a look at the following resources:
+### Colors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Primary: Black (#000000)
+- Secondary: White (#ffffff)
+- Accent: Purple (#6A27A0)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Fonts
 
-## Deploy on Vercel
+- **Raleway** - Primary font for headings
+- **Geist** - Secondary font for body text
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 Responsive Breakpoints
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1023px
+- **Desktop**: ≥ 1024px
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically
+
+### Other Platforms
+
+- Netlify
+- AWS Amplify
+- Railway
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📧 Contact
+
+- **Name**: Ilman Baihaqi
+- **Email**: [your-email@example.com]
+- **LinkedIn**: [your-linkedin]
+- **Portfolio**: [your-portfolio-url]
+
+---
+
+Made with ❤️ by Ilman Baihaqi
