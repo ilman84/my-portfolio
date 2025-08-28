@@ -47,7 +47,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, Tailwind 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/my-portfolio.git
+git clone https://github.com/ilman84/my-portfolio.git
 cd my-portfolio
 ```
 

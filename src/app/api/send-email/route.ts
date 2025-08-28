@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import environmentConfig from '../../../../environment.config.js';
 
 export async function POST(request: NextRequest) {
   try {
     // Check if API key exists
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
+    const apiKey = process.env.RESEND_API_KEY || environmentConfig.emailService.config.resend.apiKey;
+    if (!apiKey || apiKey.includes('your_')) {
       console.error('RESEND_API_KEY is not configured');
       return NextResponse.json(
-        { error: 'Email service is not configured' },
+        { error: 'Email service is not configured. Please set RESEND_API_KEY in environment variables.' },
         { status: 500 }
       );
     }
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get recipient email from environment or use default
-    const recipientEmail = process.env.YOUR_EMAIL || 'your-email@example.com';
+    const recipientEmail = process.env.YOUR_EMAIL || environmentConfig.emailService.config.resend.toEmail;
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({

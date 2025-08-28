@@ -27,6 +27,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+# Allow env template files
+!env-template.txt
 
 # vercel
 .vercel
@@ -43,3 +45,5 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+.vercel
