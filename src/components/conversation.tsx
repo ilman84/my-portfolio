@@ -20,7 +20,6 @@ export default function Conversation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<'success' | 'error'>('success');
-  const [modalMessage, setModalMessage] = useState('');
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -36,7 +35,6 @@ export default function Conversation() {
       !formData.message.trim()
     ) {
       setModalType('error');
-      setModalMessage('Please fill in all fields');
       setShowModal(true);
       return;
     }
@@ -52,24 +50,15 @@ export default function Conversation() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
       if (response.ok) {
         setModalType('success');
-        setModalMessage(
-          "Thank you for reaching out. I'll get back to you as soon as possible"
-        );
         setFormData({ name: '', email: '', message: '' });
       } else {
         setModalType('error');
-        setModalMessage(
-          result.error || 'Failed to send message. Please try again.'
-        );
       }
       setShowModal(true);
     } catch {
       setModalType('error');
-      setModalMessage('Network error. Please try again.');
       setShowModal(true);
     } finally {
       setIsSubmitting(false);
@@ -320,12 +309,7 @@ export default function Conversation() {
       </motion.div>
 
       {/* Status Modal */}
-      <StatusModal
-        isOpen={showModal}
-        type={modalType}
-        message={modalMessage}
-        onClose={closeModal}
-      />
+      <StatusModal isOpen={showModal} type={modalType} onClose={closeModal} />
     </>
   );
 }
