@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { useAccordion } from '../hooks/useAccordion';
 import { Accordion } from './accordion';
 
@@ -45,38 +46,96 @@ export default function Frequently() {
   };
 
   return (
-    <div
+    <motion.div
       id='frequently'
       className='flex flex-col px-4 md:px-[120px] py-8 md:py-16 gap-6 md:gap-16 items-center w-full md:w-[1440px] relative z-[346]'
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        ease: 'easeOut',
+      }}
     >
       {/* Container */}
       <div className='flex flex-col gap-16 w-full'>
         {/* Header */}
-        <div className='flex flex-col gap-4 items-center w-full font-[raleway]'>
-          <span className='text-[24px] md:text-5xl font-bold leading-snug md:leading-[60px] text-white text-center '>
+        <motion.div
+          className='flex flex-col gap-4 items-center w-full font-[raleway]'
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+            ease: 'easeOut',
+          }}
+        >
+          <motion.span
+            className='text-[24px] md:text-5xl font-bold leading-snug md:leading-[60px] text-white text-center hover:scale-105 transition-all duration-300'
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.3,
+              ease: 'easeOut',
+            }}
+          >
             Frequently Asked Questions
-          </span>
-          <span className='text-sm md:text-lg text-[#a4a7ae] text-center leading-snug md:leading-8'>
+          </motion.span>
+          <motion.span
+            className='text-sm md:text-lg text-[#a4a7ae] text-center leading-snug md:leading-8 hover:text-white transition-all duration-300'
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.4,
+              ease: 'easeOut',
+            }}
+          >
             Got questions? Here are the answers to the ones we get asked the
             most.
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
 
         {/* Accordion Questions */}
-        <div className='w-full max-w-6xl mx-auto'>
+        <motion.div
+          className='w-full max-w-6xl mx-auto'
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.8,
+            delay: 0.5,
+            ease: 'easeOut',
+          }}
+        >
           <div className='bg-black rounded-lg p-4 md:p-8'>
-            {items.map((item) => (
-              <Accordion
+            {items.map((item, index) => (
+              <motion.div
                 key={item.id}
-                title={item.title}
-                content={item.content}
-                isOpen={item.isOpen}
-                onToggle={() => handleToggle(item.id)}
-              />
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.6 + index * 0.1,
+                  ease: 'easeOut',
+                }}
+              >
+                <Accordion
+                  title={item.title}
+                  content={item.content}
+                  isOpen={item.isOpen}
+                  onToggle={() => handleToggle(item.id)}
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
