@@ -40,7 +40,7 @@ export default function Trusted() {
             ease: 'easeOut',
           }}
         >
-          A few kind words from the people behind the projects Edwin helped
+          A few kind words from the people behind the projects Ilman helped
           bring to life.
         </motion.span>
       </motion.div>
