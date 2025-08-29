@@ -1,24 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
-import environmentConfig from '../../../../environment.config.js';
+import { resend, emailConfig } from '../../../lib/resend';
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if API key exists
-    const apiKey = process.env.RESEND_API_KEY || environmentConfig.emailService.config.resend.apiKey;
-    if (!apiKey || apiKey.includes('your_')) {
-      console.error('RESEND_API_KEY is not configured');
-      return NextResponse.json(
-        { error: 'Email service is not configured. Please set RESEND_API_KEY in environment variables.' },
-        { status: 500 }
-      );
-    }
+    console.log('=== EMAIL SEND PROCESS START ===');
+    console.log('1. Starting email send process...');
 
-    const resend = new Resend(apiKey);
-    const { name, email, message } = await request.json();
+    const body = await request.json();
+    console.log('2. Request body received:', body);
+
+    const { name, email, message } = body;
+    console.log('3. Extracted data:', {
+      name,
+      email,
+      message: message?.substring(0, 50) + '...',
+    });
 
     // Validate required fields
     if (!name || !email || !message) {
+      console.log('4. Validation failed: missing required fields');
       return NextResponse.json(
         { error: 'Name, email, and message are required' },
         { status: 400 }
@@ -28,20 +28,27 @@ export async function POST(request: NextRequest) {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.log('4. Validation failed: invalid email format');
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
       );
     }
 
-    // Get recipient email from environment or use default
-    const recipientEmail = process.env.YOUR_EMAIL || environmentConfig.emailService.config.resend.toEmail;
+    console.log('4. Validation passed');
+    console.log('5. Preparing to send email with config:', {
+      from: emailConfig.from,
+      to: emailConfig.to,
+      subject: `${emailConfig.subject}: ${name}`,
+    });
 
-    // Send email using Resend
+    console.log('6. About to call Resend API...');
+
+    // Send email using Resend with HTML template
     const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // Ganti dengan domain Anda
-      to: [recipientEmail],
-      subject: `New Contact from Portfolio: ${name}`,
+      from: emailConfig.from,
+      to: [emailConfig.to],
+      subject: `${emailConfig.subject}: ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #ee1d52; padding-bottom: 10px;">
@@ -78,22 +85,35 @@ Time: ${new Date().toLocaleString()}
       `,
     });
 
+    console.log('7. Resend API response received:', { data, error });
+
     if (error) {
-      console.error('Resend error:', error);
+      console.error('8. Resend API error:', error);
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: `Failed to send email: ${error.message || 'Unknown error'}` },
         { status: 500 }
       );
     }
+
+    console.log('8. Email sent successfully:', data);
+    console.log('=== EMAIL SEND PROCESS END ===');
 
     return NextResponse.json(
       { message: 'Email sent successfully', data },
       { status: 200 }
     );
   } catch (error) {
-    console.error('Server error:', error);
+    console.error('=== SERVER ERROR ===');
+    console.error('Error type:', typeof error);
+    console.error('Error constructor:', error?.constructor?.name);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    console.error('Full error object:', error);
+
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error. Please try again later.' },
       { status: 500 }
     );
   }

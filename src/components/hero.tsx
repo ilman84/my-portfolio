@@ -87,19 +87,14 @@ export default function Hero() {
               />
             </motion.div>
             <motion.div
-              className='w-[81px] h-[81px] bg-[url(/images/big-star.svg)] bg-cover bg-no-repeat absolute top-[122px] left-[288px] overflow-hidden z-[13]'
-              animate={{
-                scale: [0, 1, 1.12, 1],
-                opacity: [0, 1, 1, 1],
-                rotate: [-180, 0, 0, 0],
-              }}
+              className='w-[100px] h-[100px] bg-[url(/images/big-star.png)] bg-cover bg-no-repeat absolute top-[122px] left-[270px] overflow-hidden z-[13]'
+              initial={{ y: 100, opacity: 0, scale: 0 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
               transition={{
-                duration: 1.4,
-                delay: 1.2,
-                ease: 'easeInOut',
-                times: [0, 0.5, 0.75, 1],
+                duration: 1,
                 repeat: Infinity,
-                repeatDelay: 1.6,
+                repeatDelay: 1,
+                ease: 'easeInOut',
               }}
             />
             <motion.div
@@ -273,7 +268,7 @@ export default function Hero() {
           >
             {/* Left name */}
             <motion.div
-              className='relative flex flex-col mt-[140px]'
+              className='relative flex flex-col mt-[220px]'
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 2.0 }}
@@ -319,7 +314,7 @@ export default function Hero() {
 
             {/* Center profile image with big star */}
             <motion.div
-              className='relative w-[383px] h-[496px] shrink-0'
+              className='relative w-[383px] h-[496px] shrink-0 mt-[80px]'
               initial={{ scale: 0.8, opacity: 0, rotateY: 90 }}
               animate={{ scale: 1, opacity: 1, rotateY: 0 }}
               transition={{
@@ -330,19 +325,14 @@ export default function Hero() {
               }}
             >
               <motion.div
-                className='absolute -right-[30px] w-[126px] h-[126px] bg-[url(/images/big-star.svg)] bg-cover bg-no-repeat z-[12]'
-                animate={{
-                  scale: [0, 1, 1.12, 1],
-                  opacity: [0, 1, 1, 1],
-                  rotate: [-180, 0, 0, 0],
-                }}
+                className='absolute -right-[30px] w-[126px] h-[126px] bg-[url(/images/big-star.png)] bg-cover bg-no-repeat z-[12]'
+                initial={{ y: 100, opacity: 0, scale: 0 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
                 transition={{
-                  duration: 1.4,
-                  delay: 2.8,
-                  ease: 'easeInOut',
-                  times: [0, 0.5, 0.75, 1],
+                  duration: 2,
                   repeat: Infinity,
-                  repeatDelay: 1.6,
+                  repeatDelay: 1,
+                  ease: 'easeInOut',
                 }}
               />
               <motion.div
@@ -359,7 +349,7 @@ export default function Hero() {
 
             {/* Right about + socials */}
             <motion.div
-              className='flex flex-col mt-[140px]'
+              className='flex flex-col mt-[220px]'
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 2.4 }}
